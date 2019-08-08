@@ -15,6 +15,8 @@ Page({
 
     order: "case_id desc", // 按时间降序排序 默认降序
     type_id: 0, // 案件类别排序 默认全部分类
+    curpage: 1, // 当前页
+    page: 10 // 每页的条数
   },
 
   // 点击 时间排序 按钮 
@@ -48,27 +50,39 @@ Page({
     // 这里要请求一次ajax
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-    // ajax请求 典型案例列表页 案件类别的数据
+  // ajax请求 典型案例列表页 案件类别的数据
+  render_getCaseType: function () {
     getCaseType().then((res) => {
       let caseType = res.data.datas.list
       this.setData({
         caseType
       })
     })
+  },
 
-    // ajax请求 典型案例列表页 列表的数据
-    getCaseLists()
+  // ajax请求 典型案例列表页 列表的数据
+  render_getCaseLists: function () {
+    let curpage = this.data.curpage
+    let page = this.data.page
+    let type_id = this.data.type_id
+    let order = this.data.order
+    getCaseLists(type_id, order, curpage, page)
     .then((res) => {
-      // console.log(res)
+      console.log(res)
     })
     .catch((err) => {
       // console.log(err)
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+    this.render_getCaseType()
+
+    this.render_getCaseLists()
 
   },
 

@@ -18,10 +18,12 @@ const ajax = (options) => {
 /**
  * API
  */
-const GETHOMECASELISTS_URL = "http://www.ruanjinqiao.com/mobile/index.php?act=vip_inactive&op=case_index_list"
-const GETCASEDETAIL_URL = "http://www.ruanjinqiao.com/mobile/index.php?act=vip_inactive&op=page_tmpl&type=case"
-const GETCASELISTS = "http://www.ruanjinqiao.com/mobile/index.php?act=vip_inactive&op=case_list&type_id=0&order=case_id+desc&keyword=&curpage=1&page=10"
-const GETCASETYPE = "http://www.ruanjinqiao.com/mobile/index.php?act=vip_inactive&op=get_group&type=case"
+const ApiUrl = "http://www.ruanjinqiao.com/mobile"
+
+const GETHOMECASELISTS_URL = ApiUrl + "/index.php?act=vip_inactive&op=case_index_list"
+const GETCASEDETAIL_URL = ApiUrl + "/index.php?act=vip_inactive&op=page_tmpl&type=case"
+const GETCASELISTS = ApiUrl + "/index.php?act=vip_inactive&op=case_list"
+const GETCASETYPE = ApiUrl + "/index.php?act=vip_inactive&op=get_group&type=case"
 
 // 首页 典型案例 的4条案例网络请求
 const getHomeCaseLists = () => {
@@ -38,9 +40,9 @@ const getCaseDetail = (id) => {
 }
 
 //典型案例列表页 请求案例列表的网络请求
-const getCaseLists = () => {
+const getCaseLists = (type_id, order, curpage, page) => {
   return ajax({
-    url: GETCASELISTS
+    url: `${GETCASELISTS}&type_id=${type_id}&order=${order}&keyword=&curpage=${curpage}&page=${page}`
   })
 }
 
