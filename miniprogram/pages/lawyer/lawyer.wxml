@@ -1,0 +1,22 @@
+<!--pages/lawyer/lawyer.wxml-->
+
+<!-- 筛选器组件 -->
+<component-filtrate></component-filtrate>
+
+<!-- 律师列表 -->
+<view class="lawyer-list">
+  <block
+    wx:for="{{lawyerLists}}"
+    wx:for-item="lawyerList"
+    wx:key="{{lawyerList.id}}"
+  >
+    <view class="lawyer-item" hover-class="bg-color" catchtap="toDetail" data-id="{{lawyerList.id}}">
+      <image src="{{lawyerList.lawyerHeader}}" class="lawyer-item-img"></image>
+      <view class="lawyer-item-text">
+        <text class="lawyer-item-name">{{lawyerList.lawyerName}}</text>
+        <text class="lawyer-item-job">{{lawyerList.lawyerJob}}</text>
+        <text class="lawyer-item-address">{{lawyerList.lawyerAddress}}</text>
+      </view>
+    </view>
+  </block>
+</view>

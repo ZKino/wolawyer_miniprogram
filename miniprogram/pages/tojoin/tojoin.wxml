@@ -1,0 +1,71 @@
+<!--pages/tojoin/tojoin.wxml-->
+
+<!-- 招商加盟 页面 -->
+<component-subtitle subtitle="加盟条件"></component-subtitle>
+<view class="tojoin-conditions">
+  <text>1. 热心公益事业, 志愿推动法制社会建设</text>
+  <text>2. 具备50平米以上办公场所及相应硬件设施</text>
+  <text>3. 4-6名工作人员</text>
+  <text>4. 接受一定额度的履约保证金</text>
+</view>
+
+<component-subtitle subtitle="合作费用"></component-subtitle>
+<view class="table">
+  <text style="grid-column-start: 1;grid-column-end: 3;grid-row-start: 1;grid-row-end: 3;">区域合伙人</text>
+  <text>费用标准(RMB, 万元)</text>
+  <text>2019/7--2019/12</text>
+  <text style="grid-column-start: 1;grid-column-end: 2;grid-row-start: 3;grid-row-end: 10;">2</text>
+  <text>一线城市</text>
+  <text>100</text>
+  <text>直辖市</text>
+  <text>80</text>
+  <text>新一线城市</text>
+  <text>70</text>
+  <text>二线城市</text>
+  <text>30</text>
+  <text>三线城市</text>
+  <text>20</text>
+  <text>四线城市</text>
+  <text>15</text>
+  <text>五线城市</text>
+  <text>10</text>
+  <text style="grid-column-start: 1;grid-column-end: 2;grid-row-start: 10;grid-row-end: 18;">2</text>
+  <text>一线所属</text>
+  <text>10</text>
+  <text>直辖市所属</text>
+  <text>8</text>
+  <text>新一线所属</text>
+  <text>7</text>
+  <text>二线所属</text>
+  <text>5</text>
+  <text>三线所属</text>
+  <text>5</text>
+  <text>四线所属</text>
+  <text>5</text>
+  <text>五线所属</text>
+  <text>5</text>
+</view>
+
+<component-subtitle subtitle="合作政策"></component-subtitle>
+<view class="policy">
+  <text style="font-size: 26rpx;">市级</text>
+  <text>A.按年化12%回报,连同合作费用折算为原始股,若如期上市则可获得数十倍乃至数百倍以上回报,若未能如期上市则按原始价格回购</text>
+  <text>B.在运营中心建设完成通过验收后的次月开始,分12期全部返还合伙人(二选一)</text>
+</view>
+<view class="policy">
+  <text style="font-size: 26rpx;">县级</text>
+  <text>按合作费用两倍额度配赠会员卡,合作费用折算为原始股,若如期上市则可获得数十倍乃至数百倍以上回报,若未能如期上市则按原始价格回购</text>
+  <text>注:日常分润政策见"分配机制"</text>
+</view>
+
+<component-subtitle subtitle="合作流程"></component-subtitle>
+<view class="process">
+  <text>提交申请</text> -> <text>招商运营中心初审</text> -> <text>实地考察</text> -> <text>提交考察报告</text> -> <text>公司终审</text> -> <text>签约</text> -> <text>培训</text> -> <text>开展工作</text>
+</view>
+<view class="hot-line">
+  <text>申请咨询: 400-150-9018</text>
+</view>
+
+<view class="down" catchtap="down">下载申请表</view>
+
+

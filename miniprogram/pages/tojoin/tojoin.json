@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "component-subtitle": "../../components/subtitle/subtitle"
+  },
+  "navigationBarTitleText": "招商加盟"
+}

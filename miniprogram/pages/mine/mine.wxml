@@ -1,0 +1,15 @@
+<!--pages/mine/mine.wxml-->
+
+<!-- 我的页面 -->
+<view class="mine">
+  <view class="mine-top">
+    <image src="../../images/mine-top-bg.png" class="mine-top-bg"></image>
+    <image bindtap="toJumpLogin" src="{{userHeader}}" class="mine-top-header"></image>
+    <text class="mine-top-login">登陆/注册</text>
+  </view>
+
+  <view class="mine-lists">
+    <view bindtap="toJumpToJoin" hover-class="bg-color"><image src="../../images/un-mine.png"></image>  <text>招商加盟</text></view>
+    <view bindtap="toJumpAbout" hover-class="bg-color"><image src="../../images/un-about.png"></image> <text>关于我们</text> </view>
+  </view>
+</view>

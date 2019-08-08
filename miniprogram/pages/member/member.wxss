@@ -1,0 +1,51 @@
+/* pages/member/member.wxss */
+
+.card-lists {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.card-lists>text {
+  font-size: 30rpx;
+  color: #666666;
+}
+
+.card-lists .card-list-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.card-lists .card-list-wrapper .card-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  
+  margin: 10rpx 18rpx;
+}
+
+.card-lists .card-list-wrapper .card-list-v image {
+  width: 200rpx;
+  height: 260rpx;
+  border-radius: 15rpx;
+  overflow: hidden;
+}
+.card-lists .card-list-wrapper .card-list-h image {
+  width: 310rpx;
+  height: 200rpx;
+  border-radius: 15rpx;
+  overflow: hidden;
+}
+
+.card-lists .card-list-wrapper .card-list .name {
+  font-size: 28rpx;
+  color: #666666;
+  
+}
+
+.card-lists .card-list .price {
+  font-size: 26rpx;
+  color: #EC5464;
+  font-weight: bold;
+}

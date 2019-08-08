@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "component-case": "../../components/case/case",
+    "component-subtitle": "../../components/subtitle/subtitle"
+  },
+  "navigationBarTitleText": "首页"
+}

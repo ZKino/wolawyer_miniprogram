@@ -1,0 +1,126 @@
+<!--pages/home/home.wxml-->
+
+<!-- swiper start -->
+<swiper
+  class="swiper"
+  indicator-dots="{{indicatorDots}}"
+  indicator-color="{{indicatorColor}}"
+  indicator-active-color="{{indicatorActiveColor}}"
+  autoplay="{{autoplay}}"
+  interval="{{interval}}"
+  duration="{{duration}}"
+  circular="{{circular}}"
+>
+  <block wx:for="{{imgUrls}}" wx:for-item="imgUrl" wx:key="{{imgUrl.id}}">
+    <swiper-item>
+      <image src="{{imgUrl.picSrc}}" class="slide-image" />
+    </swiper-item>
+  </block>
+</swiper>
+<!-- swiper-end -->
+
+<!-- 服务领域 start -->
+<component-subtitle subtitle="服务领域"></component-subtitle>
+<view class="servicearea">
+  <view wx:for="{{iconDatas}}" wx:for-item="iconData" wx:key="{{iconData.id}}" class="servicearea-item">
+    <image src="{{iconData.iconUrl}}" class="servicearea-img" />
+    <text class="servicearea-text">{{iconData.iconName}}</text>
+  </view>
+</view>
+<!-- 服务领域 end -->
+
+<!-- 开通会员的广告 start -->
+<!-- <component-ad></component-ad> -->
+<view class="ad" hover-class="bg-color">
+  <view class="ad-text">
+    <text class="ad-text-tips">{{adTips}}</text>
+    <view class="ad-text-desc">开通会员后,请到应用商店下载WO律师APP体验更多功能哦!</view>
+  </view>
+  <text class="ad-jump" catchtap="toJumpMember">开通立省</text>
+</view>
+<!-- 开通会员的广告 end -->
+
+<!-- 服务流程 start -->
+<component-subtitle subtitle="服务流程"></component-subtitle>
+<!-- <component-process></component-process> -->
+<view class="process">
+  <view class="process-item">
+    <image src="../../images/process-1.png" class="process-item-img"></image>
+    <text class="process-item-text-t">下载APP</text>
+  </view>
+  <view class="process-item">
+    <image src="../../images/process-2.png" class="process-item-img"></image>
+    <text class="process-item-text-t">成为会员</text>
+  </view>
+  <view class="process-item">
+    <image src="../../images/process-3.png" class="process-item-img"></image>
+    <text class="process-item-text-t">线上咨询</text>
+  </view>
+  <view class="process-item">
+    <image src="../../images/process-4.png" class="process-item-img"></image>
+    <text class="process-item-text-t">签订协议</text>
+  </view>
+  <view class="process-item">
+    <image src="../../images/process-5.png" class="process-item-img"></image>
+    <text class="process-item-text-t">案件办理</text>
+  </view>
+</view>
+<!-- 服务流程 end -->
+
+<!-- 典型案例 -->
+<component-subtitle subtitle="典型案例">
+  <text catchtap="toCaseList" style="font-size: 24rpx; color: #999999; float: right; margin-right: 20rpx;">更多>></text>
+</component-subtitle>
+<view wx:if="{{noNetWork}}" class="no-data">{{noNetWork}}</view>
+<view wx:else>
+    <block
+      wx:for="{{caseDatas}}"
+      wx:for-item="caseData"
+      wx:key="{{caseData.case_id}}">
+    <component-case case="{{caseData}}"></component-case>
+  </block>
+</view>
+
+
+<!-- 合作伙伴 start -->
+<component-subtitle subtitle="合作伙伴"></component-subtitle>
+<!-- <component-partners></component-partners> -->
+<view class="partners">
+  <scroll-view scroll-x class="partners-wrapper">
+    <view
+      class="partners-item"
+      wx:for="{{partnersDatas}}"
+      wx:for-item="partnersData"
+      wx:key="{{partnersData.id}}"
+    >
+      <image src="{{partnersData.partnersUrl}}" class="partners-item-img"></image>
+    </view>
+  </scroll-view>
+</view>
+<!-- 合作伙伴 end -->
+
+<!-- 二维码通道 -->
+<!-- <component-subtitle subtitle="二维码通道"></component-subtitle>
+<view class="qrcode">
+  <view
+    class="qrcode-item"
+    wx:for="{{qrCodeDatas}}"
+    wx:for-item="qrCodeData"
+    wx:key="{{qrCodeData.id}}"
+  >
+  
+    <image
+      src="{{qrCodeData.qrCodeUrl}}"
+      data-src="{{qrCodeData.qrCodeUrl}}"
+      class="qrcode-img"
+      catchtap="previewImage"
+    >
+    </image>
+    <text class="qrCode-text">{{qrCodeData.qrCodeTxt}}</text>
+  </view>
+</view> -->
+
+<!-- 底边 -->
+<view class="bline">
+  <text>-----我是有底线的-----</text>
+</view>

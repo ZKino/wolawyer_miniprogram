@@ -1,0 +1,34 @@
+<!--pages/member/member.wxml-->
+<view class="card-lists">
+  <text>家享会员</text>
+  <view class="card-list-wrapper">
+    <block
+      wx:for="{{cardLists_jx}}"
+      wx:for-item="cardList"
+      wx:key="{{cardList.id}}"
+    >
+      <view class="card-list card-list-v" catchtap="toBuyDetail" data-id="{{cardList.id}}">
+        <image src="{{cardList.src}}"></image>
+        <text class="name">{{cardList.name}}</text>
+        <text class="price">￥{{cardList.price}}</text>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class="card-lists">
+  <text>企享会员</text>
+  <view class="card-list-wrapper">
+    <block
+      wx:for="{{cardLists_qx}}"
+      wx:for-item="cardList"
+      wx:key="{{cardList.id}}"
+    >
+      <view class="card-list card-list-h">
+        <image src="{{cardList.src}}"></image>
+        <text class="name">{{cardList.name}}</text>
+        <text class="price">￥{{cardList.price}}</text>
+      </view>
+    </block>
+  </view>
+</view>

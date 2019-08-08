@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "component-subtitle": "../../components/subtitle/subtitle"
+  }
+}

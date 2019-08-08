@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "component-case": "../../components/case/case"
+  },
+  "navigationBarTitleText": "典型案例",
+  "enablePullDownRefresh": true
+}

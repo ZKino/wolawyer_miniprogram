@@ -1,0 +1,66 @@
+/* pages/tojoin/tojoin.wxss */
+
+.tojoin-conditions {
+  padding: 0 20rpx 20rpx 20rpx;
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.tojoin-conditions text {
+  display: block;
+  line-height: 1.6;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+  font-size: 24rpx;
+  color: #666666;
+  margin: 0 20rpx;
+  border: 1rpx solid #999999;
+}
+
+.table text {
+  border: 1rpx solid #999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.policy {
+  color: #666666;
+  font-size: 24rpx;
+  padding: 0 20rpx;
+}
+.policy text {
+  display: block;
+  margin-bottom: 15rpx;
+}
+
+.process {
+  color: #666666;
+  font-size: 24rpx;
+  padding: 0 20rpx;
+  line-height: 1.5;
+}
+
+.hot-line {
+  text-align: center;
+  margin-top: 30rpx;
+}
+.hot-line text {
+  font-size: 24rpx;
+  color: #ffffff;
+  padding: 10rpx 30rpx;
+  background-color: #0878f6;
+  border-radius: 30rpx;
+}
+
+.down {
+  text-align: center;
+  font-size: 26rpx;
+  color: #0878f6;
+  margin-top: 20rpx;
+  margin-bottom: 50rpx;
+}

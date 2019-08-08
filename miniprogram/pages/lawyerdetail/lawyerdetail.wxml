@@ -1,0 +1,48 @@
+<!--pages/lawyerdetail/lawyerdetail.wxml-->
+<view class="lawyer-detail">
+
+  <image src="{{lawyerInfos.lawyerHeader}}" data-src="{{lawyerInfos.lawyerHeader}}" catchtap="previewImage" class="lawyer-detail-img"></image>
+
+  <!-- 律师姓名/性别/年限等 -->
+  <component-subtitle subtitle="律师信息"></component-subtitle>
+  <view class="lawyer-detail-info">
+    <text>{{lawyerInfos.lawyerName}}</text> | <text>{{lawyerInfos.lawyerGender}}</text>
+    <view>职业年限 : <text>{{lawyerInfos.work_year}}</text></view>
+    <view>签约日期 : <text>{{lawyerInfos.add_time}}</text></view>
+    <view>联系方式 : <text>{{lawyerInfos.lawer_mobile}}</text></view>
+    <view>所在区域 : <text>{{lawyerInfos.area_info}}</text></view>
+    <view>律师证号 : <text>{{lawyerInfos.lawer_pass}}</text></view>
+    <view>执业证号 : <text>{{lawyerInfos.work_register}}</text></view>
+  </view>
+
+  <!-- 律师擅长类别 -->
+  <component-subtitle subtitle="擅长类别"></component-subtitle>
+  <view class="lawyer-detail-job">
+    <block
+      wx:for="{{lawyerInfos.types}}"
+      wx:for-item="type"
+      wx:key="{{index}}"
+    >
+      <text>{{type}}</text>
+    </block>
+  </view>
+
+  <!-- 就职信息 -->
+  <view class="lawyer-detail-induction">
+    <view>
+      <text>● 就职律所</text>
+      <text>{{lawyerInfos.lawer_office}}</text>
+    </view>
+    <view>
+      <text>● 主管部门</text>
+      <text>{{lawyerInfos.super_department}}</text>
+    </view>
+  </view>
+
+  <!-- 律师简介 -->
+  <component-subtitle subtitle="律师简介"></component-subtitle>
+  <view class="lawyer-detail-intro">
+    <text>{{lawyerInfos.lawer_descript}}</text>
+  </view>
+
+</view>

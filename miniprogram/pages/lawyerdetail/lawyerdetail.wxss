@@ -1,0 +1,74 @@
+/* pages/lawyerdetail/lawyerdetail.wxss */
+
+.lawyer-detail {}
+
+.lawyer-detail .lawyer-detail-img {
+  display: block;
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.lawyer-detail .lawyer-detail-info {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 40rpx;
+  font-size: 26rpx;
+  color: #666666; 
+}
+
+.lawyer-detail .lawyer-detail-info text {
+  line-height: 1.8;
+}
+
+.lawyer-detail .lawyer-detail-job {
+  padding: 0 20rpx;
+}
+
+.lawyer-detail .lawyer-detail-job text {
+  padding: 6rpx 16rpx;
+  margin: 10rpx;
+  font-size: 24rpx;
+  color: #ed5564;
+  border: 1rpx solid #ed5564;
+  border-radius: 8rpx;
+  display: inline-flex;
+  justify-content: flex-start;
+}
+
+.lawyer-detail .lawyer-detail-induction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.lawyer-detail .lawyer-detail-induction view {
+  background-color: red;
+  width: 48%;
+  box-sizing: border-box;
+  padding: 20rpx 30rpx;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+  color: #ffffff;
+}
+
+.lawyer-detail .lawyer-detail-induction view:first-child {
+  background-color: #5b91fc;
+}
+.lawyer-detail .lawyer-detail-induction view:last-child {
+  background-color: #ffae33;
+}
+
+.lawyer-detail .lawyer-detail-induction view text {
+  line-height: 1.6;
+  display: block;
+}
+
+.lawyer-detail .lawyer-detail-intro {
+  padding: 0 20rpx;
+  font-size: 26rpx;
+  color: #666666;
+  text-align: justify;
+}

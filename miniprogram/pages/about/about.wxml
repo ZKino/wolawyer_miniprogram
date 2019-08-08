@@ -1,0 +1,38 @@
+<!--pages/about/about.wxml-->
+
+<view class="about">
+  四川软赢金桥网络科技有限公司是一家互联网科技公司，拥有专业的研发团队、运营团队和法务保障服务团队，旗下《WO律师》是公司自主开发的一个“互联网+大数据+共享律师”创新型法律服务供需双保障平台。是中国目前第一个实现法律服务产品化、价格低廉透明化、律师配属专业化、供需利益保障化，以共享理念和大数法则让用户少花钱多办事、让律师少费时多收益，为家庭(个人)提供专属私人律师，为中小微企业提供专属法律顾问的O2O平台。从线上到线下7*24小时全年无休，致力于为用户提供随时随地的法律咨询、文书审查、草拟合同、公司章程、员工手册、查档立案、撰文发函、仲裁诉讼等法律服务，是中国法律服务普惠革命的领导者和推动者。
+</view>
+
+<map
+  id="map"
+  longitude="104.0635100000"
+  latitude="30.5536300000"
+  scale="14"
+  controls="{{controls}}"
+  bindcontroltap="controltap"
+  markers="{{markers}}"
+  bindmarkertap="markertap"
+  polyline="{{polyline}}"
+  bindregionchange="regionchange"
+  show-location
+  style="width: 100%; height: 360rpx;">
+</map>
+
+<view class="about-address">
+  <image src="../../images/hot-line.png"></image>
+  <text>客服热线</text>
+  <text>400-1509018</text>
+</view>
+
+<view class="about-address">
+  <image src="../../images/address.png"></image>
+  <text>公司地址</text>
+  <text>成都市武侯区天府二街138号（蜀都中心二期）</text>
+</view>
+
+<view class="about-address">
+  <image src="../../images/email.png"></image>
+  <text>邮箱地址</text>
+  <text>3165366044@qq.com</text>
+</view>

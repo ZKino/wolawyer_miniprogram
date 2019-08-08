@@ -1,0 +1,12 @@
+/* components/subtitle/subtitle.wxss */
+
+.subtitle {
+  padding: 20rpx 20rpx;
+}
+
+.subtitle .subtitle-text {
+  font-size: 30rpx;
+  color: #333333;
+  padding: 0rpx 10rpx;
+  border-left: 12rpx solid #1985ff;
+}

@@ -1,0 +1,32 @@
+<!--pages/caselist/caselist.wxml-->
+
+<!-- 典型案例页面 -->
+
+<view class="case-list-top">
+
+  <view class="case-list-top-item">
+    <picker
+      class="picker"
+      bindchange="bindPickerChange"
+      value="{{0}}"
+      range="{{caseType}}"
+      range-key="group_name"
+    >
+      <view>{{caseTxt}}</view>    
+    </picker>
+  </view>
+
+  <view bindtap="orderByTime" class="case-list-top-item" hover-class="bg-color">
+    时间排序
+    <text class="triangle {{flag2?'':'directionB'}}"></text>
+  </view>
+
+</view>
+
+<block
+  wx:for="{{caseLists}}"
+  wx:for-item="caseList"
+  wx:key="{{caseList.id}}"
+>
+  <component-case case="{{caseList}}"></component-case>
+</block>

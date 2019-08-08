@@ -1,0 +1,17 @@
+<!--pages/casedetail/casedetail.wxml-->
+
+<!-- 典型案例的详情页面 -->
+
+<!-- 引入解析字符串html的wxParse.wxml模块 -->
+<import src="../../utils/wxParse/wxParse.wxml" />
+
+<view class="case-detail">
+
+  <view wx:if="{{noNetWork}}" class="no-data">{{noNetWork}}</view>
+  <view wx:else>
+    <text class="case-detail-title">{{caseData.title}}</text>
+    <text class="case-detail-time">{{caseData.time}}</text>
+    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+  </view>
+
+</view>

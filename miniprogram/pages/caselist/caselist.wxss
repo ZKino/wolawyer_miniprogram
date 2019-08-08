@@ -1,0 +1,42 @@
+/* pages/caselist/caselist.wxss */
+
+/* 典型案例 顶部 */
+
+.case-list-top {
+  width: 100%;
+  /* padding: 0 20rpx; */
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #f5f5f5;
+  font-size: 26rpx;
+  color: #666666;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.case-list-top .case-list-top-item {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.case-list-top .case-list-top-item .triangle {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  border: 10rpx solid #000;
+  border-top-color: #777777;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  transition: all 1s;
+  transform: rotateZ(0deg) translateY(6rpx);
+}
+.case-list-top .case-list-top-item .directionB {
+  transform: rotateZ(180deg) translateY(6rpx);
+}
+
+.case-list-top .case-list-top-item .picker {
+  display: inline-block;
+}

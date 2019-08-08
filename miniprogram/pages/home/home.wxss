@@ -1,0 +1,212 @@
+/* pages/home/home.wxss */
+.more {
+  font-size: 24rpx;
+  color: #999999;
+  float: right;
+  margin-right: 20rpx;
+}
+
+/* swiper start */
+.swiper {
+  height: 280rpx;
+}
+
+.swiper .slide-image {
+  width: 100%;
+  height: 100%;
+}
+/* swiper end */
+
+/* 服务领域 start */
+.servicearea {
+  width: 100%;
+  padding: 0rpx 0rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.servicearea .servicearea-item {
+  width: 25%;
+  padding: 15rpx 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.servicearea .servicearea-item .servicearea-img {
+  width: 60rpx;
+  height: 60rpx;
+}
+.servicearea .servicearea-item .servicearea-text {
+  width: 100%;
+  font-size: 26rpx;
+  color: #666666;
+  text-align: center;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  align-content: center;
+}
+/* 服务领域 end */
+
+/* 开通会员的广告 start */
+.ad {
+  position: relative;
+  padding: 25rpx 0;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+/* 用户触摸.ad元素时候的触摸反馈 */
+.bg-color {
+  background-color: #f5f5f5;
+}
+
+.ad .ad-text {
+  font-size: 26rpx;
+  color: #999999;
+  padding-left: 30rpx;
+  padding-right: 150rpx;
+}
+
+.ad .ad-text .ad-text-tips, .ad .ad-text .ad-text-desc {
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  line-height: 1.6;
+}
+.ad .ad-text .ad-text-desc {
+  font-size: 20rpx;
+}
+
+.ad .ad-jump {
+  font-size: 20rpx;
+  color: #ffffff;
+  padding: 10rpx 18rpx;
+  border-radius: 25rpx;
+  position: absolute;
+  top: 50%;
+  right: 20rpx;
+  transform: translateY(-50%);
+  /* background-image: linear-gradient( 135deg, #52E5E7 10%, #130CB7 100%); */
+  background-image: linear-gradient( 135deg, #1985FF 10%, #9708CC 100%);
+}
+/* 开通会员的广告 end */
+
+/* 服务流程 start */
+.process {
+  padding: 10rpx 40rpx 40rpx 40rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.process .process-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1rpx solid red; */
+  text-align: center;
+}
+
+.process .process-item .process-item-img {
+  width: 55rpx;
+  height: 50rpx;
+}
+
+.process .process-item .process-item-text-t {
+  font-size: 26rpx;
+  color: #666666;
+  margin-top: 6rpx; 
+}
+/* 服务流程 end */
+
+/* 合作伙伴 start */
+.partners {
+  box-sizing: border-box;
+  padding: 10rpx 20rpx 20rpx 20rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.partners .partners-wrapper {
+  width: 100%;
+  /* display: flex; */
+  white-space: nowrap;
+  /* flex-wrap: nowrap; */
+}
+
+.partners .partners-wrapper .partners-item {
+  display: inline-block;
+  width: 160rpx;
+  height: 80rpx;
+  margin-right: 10rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #f5f5f5;
+  border-radius: 10rpx;
+}
+
+.partners .partners-wrapper .partners-item .partners-item-img {
+  width: 99%;
+  height: 99%;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+/* 合作伙伴 end */
+
+
+/* 二维码通道 start */
+.qrcode {
+  padding: 20rpx;
+  background-color: #eeeeee;
+  display: flex;
+  justify-content: space-around;
+}
+
+.qrcode .qrcode-item {
+  text-align: center;
+}
+
+.qrcode .qrcode-item .qrcode-img {
+  width: 130rpx;
+  height: 130rpx;
+  border: 2rpx solid #f5f5f5;
+}
+
+.qrcode .qrcode-item .qrCode-text, .qrcode .qrcode-item .qrCode-tips {
+  font-size: 24rpx;
+  color: #666666;
+  display: block;
+}
+
+/* 二维码通道 end */
+
+/* 底边 start */
+.bline {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999999;
+  padding: 40rpx 0;
+}
+/* 底边 end */

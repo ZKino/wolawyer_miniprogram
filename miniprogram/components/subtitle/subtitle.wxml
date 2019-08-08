@@ -1,0 +1,7 @@
+<!--components/subtitle/subtitle.wxml-->
+
+<!-- 副标题组件 -->
+<view class="subtitle">
+  <text class="subtitle-text">{{subtitle}}</text>
+  <slot></slot>
+</view>

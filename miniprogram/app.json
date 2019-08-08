@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/lawyer/lawyer",
+    "pages/tojoin/tojoin",
+    "pages/about/about",
+    "pages/member/member",
+    "pages/mine/mine",
+    "pages/casedetail/casedetail",
+    "pages/lawyerdetail/lawyerdetail",
+    "pages/caselist/caselist",
+    "pages/buydetail/buydetail",
+    "pages/orderdetail/orderdetail",
+    "pages/login/login"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#1985ff",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#1985ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "./images/un-home.png",
+        "selectedIconPath": "./images/home.png"
+      },
+      {
+        "pagePath": "pages/lawyer/lawyer",
+        "text": "律师",
+        "iconPath": "./images/un-lawyer.png",
+        "selectedIconPath": "./images/lawyer.png"
+      },
+      {
+        "pagePath": "pages/member/member",
+        "text": "会员",
+        "iconPath": "./images/un-member.png",
+        "selectedIconPath": "./images/member.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "./images/un-mine.png",
+        "selectedIconPath": "./images/mine.png"
+      }
+    ]
+  }
+}
