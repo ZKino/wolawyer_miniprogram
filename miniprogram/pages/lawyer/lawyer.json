@@ -1,7 +1,4 @@
 {
-  "usingComponents": {
-    "component-filtrate": "../../components/filtrate/filtrate"
-  },
-  "navigationBarTitleText": "律师",
-  "enablePullDownRefresh": true
+  "usingComponents": {},
+  "navigationBarTitleText": "律师"
 }

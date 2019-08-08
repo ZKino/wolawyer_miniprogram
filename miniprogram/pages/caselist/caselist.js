@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    flag2: true, // 时间排序三角形的朝向
+    flag: true, // 时间排序三角形的朝向
     caseLists: [],
     caseType: [], // 案件的类别数据
     caseTxt: "全部分类", // 案件类别默认显示文字
@@ -16,7 +16,9 @@ Page({
     order: "case_id desc", // 按时间降序排序 默认降序
     type_id: 0, // 案件类别排序 默认全部分类
     curpage: 1, // 当前页
-    page: 8 // 每页的条数
+    page: 10, // 每页的条数
+    pageTotal: "", // 总页数
+    hasmore: "" // 是否还有剩余页数
   },
 
   // 点击 时间排序 按钮 
@@ -25,17 +27,16 @@ Page({
     if (_order === "case_id desc") {
       this.setData({
         order: "case_id",
-        flag2: false
+        flag: false
       })
     } else if (_order === "case_id") {
       this.setData({
         order: "case_id desc",
-        flag2: true
+        flag: true
       })
     }
-    console.log(this.data.order)
-    console.log(this.data.direction)
     // 这里要请求一次ajax
+    this.render_getCaseLists(this.data.type_id, this.data.order, this.data.curpage, this.data.page)
   },
 
   // 点击 案件类别 按钮
@@ -45,34 +46,34 @@ Page({
       caseTxt: this.data.caseType[i].group_name,
       type_id: i
     })
-    console.log(this.data.caseTxt)
-    console.log(this.data.type_id)
     // 这里要请求一次ajax
+    this.render_getCaseLists(this.data.type_id, this.data.order, this.data.curpage, this.data.page)
   },
 
   // ajax请求 典型案例列表页 案件类别的数据
   render_getCaseType: function () {
-    getCaseType().then((res) => {
-      let caseType = res.data.datas.list
-      this.setData({
-        caseType
+    getCaseType()
+      .then((res) => {
+        let caseType = res.data.datas.list
+        this.setData({
+          caseType
+        })
       })
-    })
   },
 
   // ajax请求 典型案例列表页 列表的数据
-  render_getCaseLists: function () {
-    let curpage = this.data.curpage
-    let page = this.data.page
-    let type_id = this.data.type_id
-    let order = this.data.order
+  render_getCaseLists: function (type_id, order, curpage, page) {
     getCaseLists(type_id, order, curpage, page)
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      // console.log(err)
-    })
+      .then((res) => {
+        let pageTotal = res.data.page_total
+        let hasmore = res.data.hasmore
+        let caseLists = res.data.datas.list.list
+        this.setData({
+          caseLists,
+          pageTotal,
+          hasmore
+        })
+      })
   },
 
   /**
@@ -80,9 +81,11 @@ Page({
    */
   onLoad: function (options) {
 
-    this.render_getCaseType()
+    this.render_getCaseType() 
 
-    this.render_getCaseLists()
+    this.render_getCaseLists(this.data.type_id, this.data.order, this.data.curpage, this.data.page)
+     
+    
 
   },
 
@@ -125,7 +128,27 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.hasmore) {
+      this.setData({
+        curpage: this.data.curpage + 1
+      })
+      getCaseLists(this.data.type_id, this.data.order, this.data.curpage, this.data.page)
+        .then((res) => {
+          let hasmore = res.data.hasmore
+          let oldData = this.data.caseLists
+          let newData = res.data.datas.list.list
+          let caseLists = [...oldData, ...newData]
+          this.setData({
+            caseLists,
+            hasmore
+          })
+        })
+    } else {
+      wx.showToast({
+        title: '没有更多了',
+        icon: "loading"
+      })
+    }
   },
 
   /**

@@ -18,7 +18,7 @@
 
   <view bindtap="orderByTime" class="case-list-top-item" hover-class="bg-color">
     时间排序
-    <text class="triangle {{flag2?'':'directionB'}}"></text>
+    <text class="triangle {{flag?'':'directionB'}}"></text>
   </view>
 
 </view>

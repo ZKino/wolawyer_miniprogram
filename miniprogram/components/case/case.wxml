@@ -1,8 +1,8 @@
 <!--components/case/case.wxml-->
 
 <!-- 典型案例组件 -->
-<view class="case" catchtap="toCaseDetail" data-id="{{case.case_id}}">
-  <view class="case-item" hover-class="bg-color">
+<view class="case" catchtap="toCaseDetail" data-id="{{case.case_id}}" hover-class="bg-color">
+  <view class="case-item">
     <image src="{{case.case_pic}}" class="case-item-img"></image>
     <view class="case-item-text">
       <text class="case-item-text-title">{{case.case_title}}</text>

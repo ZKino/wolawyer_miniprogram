@@ -1,5 +1,22 @@
 /* pages/lawyer/lawyer.wxss */
 
+.lawyer-top {
+  width: 100%;
+  font-size: 26rpx;
+  color: #666666;
+  border-bottom: 1rpx solid #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lawyer-top .lawyer-top-item {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+
 .lawyer-list {
   width: 100%;
   /* margin-top: 82rpx; */
