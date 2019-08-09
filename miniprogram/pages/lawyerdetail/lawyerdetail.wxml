@@ -1,12 +1,12 @@
 <!--pages/lawyerdetail/lawyerdetail.wxml-->
 <view class="lawyer-detail">
 
-  <image src="{{lawyerInfos.lawyerHeader}}" data-src="{{lawyerInfos.lawyerHeader}}" catchtap="previewImage" class="lawyer-detail-img"></image>
+  <image src="{{lawyerInfos.lawer_avatar_url}}" data-src="{{lawyerInfos.lawer_avatar_url}}" bindtap="previewImage" class="lawyer-detail-img"></image>
 
   <!-- 律师姓名/性别/年限等 -->
   <component-subtitle subtitle="律师信息"></component-subtitle>
   <view class="lawyer-detail-info">
-    <text>{{lawyerInfos.lawyerName}}</text> | <text>{{lawyerInfos.lawyerGender}}</text>
+    <text>{{lawyerInfos.lawer_name}}</text> | <text>{{lawyerInfos.lawer_gender}}</text>
     <view>职业年限 : <text>{{lawyerInfos.work_year}}</text></view>
     <view>签约日期 : <text>{{lawyerInfos.add_time}}</text></view>
     <view>联系方式 : <text>{{lawyerInfos.lawer_mobile}}</text></view>

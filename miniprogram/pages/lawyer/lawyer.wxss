@@ -84,3 +84,9 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}

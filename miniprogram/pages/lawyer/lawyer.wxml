@@ -2,7 +2,7 @@
 
 <!-- 律师页面 -->
 <view class="lawyer-top">
-
+  <view class="lawyer-top-item" hover-class="bg-color">全国</view>
   <view class="lawyer-top-item" hover-class="bg-color">
     <picker
       mode="multiSelector"
@@ -10,35 +10,30 @@
       bindcolumnchange="bindMultiPickerColumnChange"
       value="{{multiIndex}}"
       range="{{multiArray}}"
+      range-key="type_name"
     >
-    <view>
-      当前选择：
-      {{multiArray[0][multiIndex[0]]}}
-      {{multiArray[1][multiIndex[1]]}}
-      {{multiArray[2][multiIndex[2]]}}
-    </view>
-  </picker>
+      {{categoryTxt}}
+    </picker>
   </view>
-
-  <view class="lawyer-top-item" hover-class="bg-color">全部分类</view>
-
 </view>
-
 
 <!-- 律师列表 -->
 <view class="lawyer-list">
-  <block
-    wx:for="{{lawyerLists}}"
-    wx:for-item="lawyerList"
-    wx:key="{{lawyerList.id}}"
-  >
-    <view class="lawyer-item" hover-class="bg-color" catchtap="toDetail" data-id="{{lawyerList.id}}">
-      <image src="{{lawyerList.lawyerHeader}}" class="lawyer-item-img"></image>
-      <view class="lawyer-item-text">
-        <text class="lawyer-item-name">{{lawyerList.lawyerName}}</text>
-        <text class="lawyer-item-job">{{lawyerList.lawyerJob}}</text>
-        <text class="lawyer-item-address">{{lawyerList.lawyerAddress}}</text>
+  <view wx:if="{{lawyerLists.length > 0}}">
+    <block
+      wx:for="{{lawyerLists}}"
+      wx:for-item="lawyerList"
+      wx:key="{{lawyerList.lawer_id}}"
+    >
+      <view class="lawyer-item" hover-class="bg-color" catchtap="toDetail" data-id="{{lawyerList.lawer_id}}">
+        <image src="{{lawyerList.lawer_avatar}}" class="lawyer-item-img"></image>
+        <view class="lawyer-item-text">
+          <text class="lawyer-item-name">{{lawyerList.lawer_name}}</text>
+          <text class="lawyer-item-job">{{lawyerList.type_info}}</text>
+          <text class="lawyer-item-address">{{lawyerList.area_info}}</text>
+        </view>
       </view>
-    </view>
-  </block>
+    </block>
+  </view>
+  <view class="no-data">{{noData}}</view>
 </view>

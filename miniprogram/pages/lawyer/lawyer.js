@@ -1,112 +1,110 @@
 // pages/lawyer/lawyer.js
+
+import { getLawyerLists, getArea, getSelectType } from "../../ajax/index.js"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    lawyerLists: [
-      {
-        id: 0,
-        lawyerHeader: "../../images/timg.jpg",
-        lawyerName: "律师1",
-        lawyerJob: ["人身损害", "财产侵权", "消费权益", "经济纠纷", "工伤赔偿", "工伤赔偿"],
-        lawyerAddress: "四川省 自贡市 威远县"
-      },
-      {
-        id: 1,
-        lawyerHeader: "../../images/timg.jpg",
-        lawyerName: "律师2",
-        lawyerJob: ["人身损害", "财产侵权", "消费权益", "经济纠纷", "工伤赔偿"],
-        lawyerAddress: "四川省 自贡市 富顺县"
-      }
-    ],
-    multiIndex: [0, 0, 0],
-    multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'], ['猪肉绦虫', '吸血虫']]
+    lawyerLists: [], // 律师列表数据
+    noData: "", // 暂无数据
+    categoryTxt: "全部分类", // 全部分类文本
+    categoryType: [], // 全部分类的数据
+    page_total: "", // 总页数
+    curpage: 1, // 当前页数,默认是第1页
+    page: 10, // 每页有多少条数据,默认10条
+    hasmore: true, // 是否还有更多页数
+    type_id: 0, // 案件类别,模式是全部分类,就是是0
+    area_id: 0 // 区域,默认是全国,也就是0
   },
 
-  bindMultiPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      multiIndex: e.detail.value
-    })
-  },
-  bindMultiPickerColumnChange: function (e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-    var data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-    data.multiIndex[e.detail.column] = e.detail.value;
-    switch (e.detail.column) {
-      case 0:
-        switch (data.multiIndex[0]) {
-          case 0:
-            data.multiArray[1] = ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'];
-            data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
-            break;
-          case 1:
-            data.multiArray[1] = ['鱼', '两栖动物', '爬行动物'];
-            data.multiArray[2] = ['鲫鱼', '带鱼'];
-            break;
-        }
-        data.multiIndex[1] = 0;
-        data.multiIndex[2] = 0;
-        break;
-      case 1:
-        switch (data.multiIndex[0]) {
-          case 0:
-            switch (data.multiIndex[1]) {
-              case 0:
-                data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
-                break;
-              case 1:
-                data.multiArray[2] = ['蛔虫'];
-                break;
-              case 2:
-                data.multiArray[2] = ['蚂蚁', '蚂蟥'];
-                break;
-              case 3:
-                data.multiArray[2] = ['河蚌', '蜗牛', '蛞蝓'];
-                break;
-              case 4:
-                data.multiArray[2] = ['昆虫', '甲壳动物', '蛛形动物', '多足动物'];
-                break;
-            }
-            break;
-          case 1:
-            switch (data.multiIndex[1]) {
-              case 0:
-                data.multiArray[2] = ['鲫鱼', '带鱼'];
-                break;
-              case 1:
-                data.multiArray[2] = ['青蛙', '娃娃鱼'];
-                break;
-              case 2:
-                data.multiArray[2] = ['蜥蜴', '龟', '壁虎'];
-                break;
-            }
-            break;
-        }
-        data.multiIndex[2] = 0;
-        break;
-    }
-    console.log(data.multiIndex);
-    this.setData(data);
-  },
-  
   // 点击律师列表的某一条跳转到律师详情页面
   toDetail (e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: `../lawyerdetail/lawyerdetail?lawyerId=${id}`,
+      url: `../lawyerdetail/lawyerdetail?id=${id}`,
     })
+  },
+
+  // 点击律师列表页面的全部分类按钮的时候
+  bindMultiPickerChange: function (e) {
+    
+  },
+  bindMultiPickerColumnChange: function (e) {
+    
+  },
+
+  // 请求律师数据
+  render_getLawyerLists: function (type_id, area_id, curpage, page) {
+    getLawyerLists(type_id, area_id, curpage, page)
+      .then((res) => {
+        let lawyerLists = res.data.datas.list.list
+        this.setData({
+          lawyerLists
+        })
+      })
+      .catch((err) => {
+        this.setData({
+          noData: "--暂无数据--"
+        })
+      })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    // 页面加载请求律师数据
+    this.render_getLawyerLists(this.data.type_id, this.data.area_id, this.data.curpage, this.data.page)
+
+    // 请求 全部分类 的数据
+    getSelectType()
+      .then((res) => {
+        console.log(res)
+
+        let categoryType = res.data.datas.list
+
+        categoryType.unshift({
+          "type_id": 0,
+          "type_name": "全部分类",
+          "next": [{
+            "type_id": 0,
+            "type_name": "全部分类",
+          }]
+        })
+
+        console.log(categoryType)
+
+        let levelOne = categoryType.map( item => {
+          return item.type_name
+        })
+        console.log(levelOne)
+
+        let totalPoiArr = categoryType.map(item => {
+          return item.next
+        })
+        console.log(totalPoiArr)
+
+        let levelTwo = []
+
+        totalPoiArr.forEach(item => {
+          levelTwo.push(item.map(i => {
+            return i.type_name
+          }))
+        })
+        console.log(levelTwo)
+
+        
+        this.setData({
+          categoryType: [levelOne, levelTwo]
+        })
+
+        console.log(this.data.categoryType)
+
+      })
 
   },
 
@@ -142,18 +140,36 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log("下拉")
+    
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log("上拉")
-    // 显示加载图标
-    wx.showLoading({
-      title: '玩命加载中',
-    })
+
+    if (this.data.hasmore) {
+      this.setData({
+        curpage: this.data.curpage + 1
+      })
+      getLawyerLists(this.data.type_id, this.data.area_id, this.data.curpage, this.data.page)
+        .then((res) => {
+          let hasmore = res.data.hasmore
+          let oldData = this.data.lawyerLists
+          let newData = res.data.datas.list.list
+          let lawyerLists = [...oldData, ...newData]
+          this.setData({
+            lawyerLists,
+            hasmore
+          })
+        })
+    } else {
+      wx.showToast({
+        title: '没有更多了',
+        icon: "loading"
+      })
+    }
+    
   },
 
   /**

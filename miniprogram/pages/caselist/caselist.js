@@ -83,9 +83,7 @@ Page({
 
     this.render_getCaseType() 
 
-    this.render_getCaseLists(this.data.type_id, this.data.order, this.data.curpage, this.data.page)
-     
-    
+    this.render_getCaseLists(this.data.type_id, this.data.order, this.data.curpage, this.data.page) 
 
   },
 

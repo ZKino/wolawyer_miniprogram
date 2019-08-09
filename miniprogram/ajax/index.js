@@ -24,6 +24,10 @@ const GETHOMECASELISTS_URL = ApiUrl + "/index.php?act=vip_inactive&op=case_index
 const GETCASEDETAIL_URL = ApiUrl + "/index.php?act=vip_inactive&op=page_tmpl&type=case"
 const GETCASELISTS = ApiUrl + "/index.php?act=vip_inactive&op=case_list"
 const GETCASETYPE = ApiUrl + "/index.php?act=vip_inactive&op=get_group&type=case"
+const GETLAWYERLISTS = ApiUrl + "/index.php?act=vip_inactive&op=search_lawer"
+const GETAREA = ApiUrl + "/index.php?act=area&op=area_list"
+const GETLAWYERDETAIL = ApiUrl + "/index.php?act=vip_inactive&op=lawer_detail&key=undefined"
+const GETSLECTTYPE = ApiUrl + "/index.php?act=vip_inactive&op=type_select"
 
 // 首页 典型案例 的4条案例网络请求
 const getHomeCaseLists = () => {
@@ -53,9 +57,41 @@ const getCaseType = () => {
   })
 }
 
+// 律师列表页面 请求律师列表数据的网络请求
+const getLawyerLists = (type_id, area_id, curpage, page) => {
+  return ajax({
+    url: `${GETLAWYERLISTS}&type_id=${type_id}&area_id=${area_id}&order=&curpage=${curpage}&page=${page}`
+  })
+}
+
+// 律师列表页面 全国区域 数据的网络请求
+const getArea = (area_id) => {
+  return ajax({
+    url: `${GETAREA}&area_id=${area_id}&deep=1`
+  })
+}
+
+// 律师列表页面 分类 的数据网络请求
+const getSelectType = () => {
+  return ajax({
+    url: GETSLECTTYPE
+  })
+}
+
+// 律师详情页面 数据的网络请求
+const getLawyerDetail = (id) => {
+  return ajax({
+    url: `${GETLAWYERDETAIL}&lawer_id=${id}`
+  })
+}
+
 export {
   getHomeCaseLists,
   getCaseDetail,
   getCaseLists,
-  getCaseType
+  getCaseType,
+  getLawyerLists,
+  getArea,
+  getLawyerDetail,
+  getSelectType
 }
