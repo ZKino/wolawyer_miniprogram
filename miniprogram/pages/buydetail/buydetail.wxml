@@ -1,6 +1,6 @@
 <!--pages/buydetail/buydetail.wxml-->
 <image
-  src="http://www.ruanjinqiao.com/data/upload/rjq/card/05913799949261757.png"
+  src="{{imgUrl}}"
   class="imgstyle"
   mode="widthFix"
 >
@@ -9,8 +9,9 @@
 <view class="buydetail-bottom">
   <view class="price">
     价格:
-    <text class="total">￥99.00</text>
+    <text class="total">￥{{price}}</text>
   </view>
   <!-- <view class="btn" catchtap="toBuy">成为会员</view> -->
-  <button class="btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">成为会员</button>
+  <!-- <button class="btn" open-type="getUserInfo" bindgetuserinfo="toJumpOrderDetail">成为会员</button> -->
+  <button class="btn" bindtap="toJumpOrderDetail">成为会员</button>
 </view>

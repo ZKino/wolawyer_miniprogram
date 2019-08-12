@@ -48,16 +48,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
-			"list": [
-				{
-					"id": -1,
-					"name": "pages/lawyer/lawyer",
-					"pathName": "pages/lawyer/lawyer",
-					"query": "",
-					"scene": null
-				}
-			]
+			"current": -1,
+			"list": []
 		}
 	}
 }

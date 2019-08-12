@@ -1,93 +1,20 @@
 // pages/member/member.js
+
+import { getCardList } from "../../ajax/index.js"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    cardLists_jx: [
-      {
-        id: 0,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911847154314443_240.png",
-        name: "体验卡",
-        price: "9.90"
-      },
-      {
-        id: 1,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911847154314443_240.png",
-        name: "体验卡",
-        price: "9.90"
-      },
-      {
-        id: 2,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911847154314443_240.png",
-        name: "体验卡",
-        price: "9.90"
-      },
-      {
-        id: 3,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911847154314443_240.png",
-        name: "体验卡",
-        price: "9.90"
-      },
-      {
-        id: 4,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911847154314443_240.png",
-        name: "体验卡",
-        price: "9.90"
-      },
-      {
-        id: 5,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911847154314443_240.png",
-        name: "体验卡",
-        price: "9.90"
-      }
-    ],
-    cardLists_qx: [
-      {
-        id: 0,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911858390322994_240.png",
-        name: "体验卡",
-        price: "99.00"
-      },
-      {
-        id: 1,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911858390322994_240.png",
-        name: "体验卡",
-        price: "99.00"
-      },
-      {
-        id: 2,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911858390322994_240.png",
-        name: "体验卡",
-        price: "99.00"
-      },
-      {
-        id: 3,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911858390322994_240.png",
-        name: "体验卡",
-        price: "99.00"
-      },
-      {
-        id: 4,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911858390322994_240.png",
-        name: "体验卡",
-        price: "99.00"
-      },
-      {
-        id: 5,
-        src: "http://www.ruanjinqiao.com/data/upload/rjq/card/05911858390322994_240.png",
-        name: "体验卡",
-        price: "99.00"
-      }
-    ]
+    cardLists_jx: [],
+    cardLists_qx: []
   },
 
   // 点击每一张卡片,跳转到对应的购买详情页
   toBuyDetail (e) {
-    
     let id = e.currentTarget.dataset.id
-    // console.log(id)
     wx.navigateTo({
       url: `../buydetail/buydetail?id=${id}`,
     })
@@ -97,6 +24,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+    // 页面加载 获取会员卡列表
+    getCardList()
+      .then((res) => {
+        console.log(res)
+        this.setData({
+          cardLists_jx: res.data.datas.geren_list,
+          cardLists_qx: res.data.datas.qiye_list
+        })
+      })
 
   },
 

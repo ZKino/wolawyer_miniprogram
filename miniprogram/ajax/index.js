@@ -8,7 +8,7 @@ const ajax = (options) => {
       data: options.data || {},
       header: {},
       method: options.method || 'GET',
-      dataType: 'json',
+      dataType: options.dataType || 'json',
       success: resolve,
       fail: reject,
     })
@@ -28,6 +28,11 @@ const GETLAWYERLISTS = ApiUrl + "/index.php?act=vip_inactive&op=search_lawer"
 const GETAREA = ApiUrl + "/index.php?act=area&op=area_list"
 const GETLAWYERDETAIL = ApiUrl + "/index.php?act=vip_inactive&op=lawer_detail&key=undefined"
 const GETSLECTTYPE = ApiUrl + "/index.php?act=vip_inactive&op=type_select"
+const GETCARDlIST = ApiUrl + "/index.php?act=vip_inactive&op=card_list"
+const GETCARDIMAGE = ApiUrl + "/index.php?act=vip_inactive&op=card_body"
+const GETCARD = ApiUrl + "/index.php?act=vip_inactive&op=card_price"
+const SENDSMS = ApiUrl + "/index.php?act=login&op=get_sms_captcha"
+const CHECKSMSCAPTCHA = ApiUrl + "/index.php?act=login&op=sms_login"
 
 // 首页 典型案例 的4条案例网络请求
 const getHomeCaseLists = () => {
@@ -85,6 +90,51 @@ const getLawyerDetail = (id) => {
   })
 }
 
+// 会员卡列表页 数据的网络请求
+const getCardList = () => {
+  return ajax({
+    url: GETCARDlIST
+  })
+}
+
+// 会员卡详情页面的图片
+const getCardImage = (id) => {
+  return ajax({
+    url: `${GETCARDIMAGE}&card_id=${id}`,
+    dataType: "text/html"
+  })
+}
+
+// 会员卡详情页面的数据
+const getCard = (id) => {
+  return ajax({
+    url: `${GETCARD}&card_id=${id}`
+  })
+}
+
+// 登陆页面 发送短信 验证码
+const sendSms = (phone) => {
+  return ajax({
+    url: SENDSMS,
+    data: {
+      phone:phone
+    }
+  })
+}
+
+// 登陆页面 验证码/手机号 校验
+const check_sms_captcha = (phone, messageCode) => {
+  return ajax({
+    url: CHECKSMSCAPTCHA,
+    data: {
+      phone: phone,
+      messageCode: messageCode
+    }
+  })
+}
+
+CHECKSMSCAPTCHA
+
 export {
   getHomeCaseLists,
   getCaseDetail,
@@ -93,5 +143,9 @@ export {
   getLawyerLists,
   getArea,
   getLawyerDetail,
-  getSelectType
+  getSelectType,
+  getCardList,
+  getCardImage,
+  getCard,
+  sendSms
 }

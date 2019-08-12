@@ -10,8 +10,14 @@ Page({
   data: {
     lawyerLists: [], // 律师列表数据
     noData: "", // 暂无数据
+
+    area: [], // 区域数据
+    originalArea: [], // 区域数据原始数据
+
     categoryTxt: "全部分类", // 全部分类文本
-    categoryType: [], // 全部分类的数据
+    categoryType: [], // 案件类别数据
+    originalCategoryType: [], // 存储请求下来的案件类别数据
+
     page_total: "", // 总页数
     curpage: 1, // 当前页数,默认是第1页
     page: 10, // 每页有多少条数据,默认10条
@@ -26,14 +32,6 @@ Page({
     wx.navigateTo({
       url: `../lawyerdetail/lawyerdetail?id=${id}`,
     })
-  },
-
-  // 点击律师列表页面的全部分类按钮的时候
-  bindMultiPickerChange: function (e) {
-    
-  },
-  bindMultiPickerColumnChange: function (e) {
-    
   },
 
   // 请求律师数据
@@ -52,59 +50,59 @@ Page({
       })
   },
 
+  // 请求 全部分类 的数据
+  render_getSelectType: function (i) {
+    getSelectType()
+      .then((res) => {
+        let levelOneList = res.data.datas.list
+        let levelTwoList = res.data.datas.list[i].next
+        let levelOneArr = levelOneList.map((item) => {
+          return item.type_name
+        })
+        let levelTwoArr = levelTwoList.map((item) => {
+          return item.type_name
+        })
+        this.setData({
+          categoryType: [levelOneArr, levelTwoArr],
+          originalCategoryType: levelOneList
+        })
+        
+      })
+  },
+  
+  bindCategoryTypePickerColumnChange(e) {
+    let column = e.detail.column
+    let value = e.detail.value
+    if (column === 0) {
+      this.render_getSelectType(value)
+    }
+  },
+
+  bindCategoryTypePickerChange (e) {
+    let index0 = e.detail.value[0]
+    let index1 = e.detail.value[1] || 0
+    let type_id = this.data.originalCategoryType[index0].next[index1].type_id
+    let type_name = this.data.originalCategoryType[index0].next[index1].type_name
+    this.setData({
+      type_id: type_id,
+      categoryTxt: type_name
+    })
+    this.render_getLawyerLists(this.data.type_id, this.data.area_id, this.data.curpage, this.data.page)
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
+    // 页面加载请求区域数据
+    // this.render_getArea(this.data.area_id)
+
     // 页面加载请求律师数据
     this.render_getLawyerLists(this.data.type_id, this.data.area_id, this.data.curpage, this.data.page)
 
-    // 请求 全部分类 的数据
-    getSelectType()
-      .then((res) => {
-        console.log(res)
-
-        let categoryType = res.data.datas.list
-
-        categoryType.unshift({
-          "type_id": 0,
-          "type_name": "全部分类",
-          "next": [{
-            "type_id": 0,
-            "type_name": "全部分类",
-          }]
-        })
-
-        console.log(categoryType)
-
-        let levelOne = categoryType.map( item => {
-          return item.type_name
-        })
-        console.log(levelOne)
-
-        let totalPoiArr = categoryType.map(item => {
-          return item.next
-        })
-        console.log(totalPoiArr)
-
-        let levelTwo = []
-
-        totalPoiArr.forEach(item => {
-          levelTwo.push(item.map(i => {
-            return i.type_name
-          }))
-        })
-        console.log(levelTwo)
-
-        
-        this.setData({
-          categoryType: [levelOne, levelTwo]
-        })
-
-        console.log(this.data.categoryType)
-
-      })
+    // 页面加载请求案件分类数据
+    this.render_getSelectType(0)
 
   },
 

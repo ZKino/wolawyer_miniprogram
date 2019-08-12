@@ -1,4 +1,7 @@
 // pages/login/login.js
+
+import { sendSms, check_sms_captcha } from "../../ajax/index.js"
+
 Page({
 
   /**
@@ -50,6 +53,24 @@ Page({
   // 点击 短信验证 按钮
   handlerGetMessageCode () {
     // ajax请求短信接口
+    console.log(this.data.phone)
+    sendSms(this.data.phone)
+      .then((res) => {
+        console.log(res)
+        if (!res.data.datas.error) {
+          wx.showToast({
+            title: '发送成功',
+            duration: 3000
+          })
+        } else {
+          wx.showToast({
+            title: '发送失败',
+            icon: 'none',
+            duration: 3000
+          })
+        }
+      })
+
     this.setData({
       isSendMessageCode: true
     })
@@ -82,9 +103,31 @@ Page({
       })
     } else {
       // ajax请求
-      console.log(this.data.phone)
-      console.log(this.data.messageCode)
+      this.checkSmsCaptcha(this.data.phone, this.data.messageCode)
     }
+  },
+
+  // 后台校验 手机/验证码
+  checkSmsCaptcha (phone, messageCode) {
+    check_sms_captcha(phone, messageCode)
+      .then((res) => {
+        if (!res.data.datas.error) {
+          console.log(res)
+          wx.showToast({
+            title: '登陆成功',
+            duration: 3000
+          })
+          wx.navigateTo({
+            url: '../mine/mine',
+          })
+        } else {
+          wx.showToast({
+            title: res.data.datas.error,
+            icon: 'none',
+            duration: 3000
+          })
+        }
+      })
   },
 
   /**

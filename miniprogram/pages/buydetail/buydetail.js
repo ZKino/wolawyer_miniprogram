@@ -1,18 +1,26 @@
 // pages/buydetail/buydetail.js
+
+import { getCardImage, getCard } from "../../ajax/index.js"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    id: "" // 当前要购买的会员卡的id
+    id: "", // 当前会员卡的id
+    imgUrl: "", // 当前会员卡详情图
+    price: "" // 当前会员卡价格
   },
 
   // 点击"成为会员"按钮
-  getUserInfo (e) {
-    getApp().globalData.userInfo = e.detail.userInfo
-    console.log(getApp().globalData.userInfo)
-    // console.log(e)
+  toJumpOrderDetail (e) {
+    // getApp().globalData.userInfo = e.detail.userInfo
+    // console.log(getApp().globalData.userInfo)
+    console.log(e)
+    wx.navigateTo({
+      url: '../orderdetail/orderdetail',
+    })
     
     // 点击购买之前先让用户登陆注册
     // console.log(getApp().globalData.code)
@@ -50,6 +58,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    let id = options.id
+    // 获取会员卡的详情图
+    getCardImage(id)
+      .then((res) => {
+        let imgUrl = res.data.match(/src="(\S*)"/)[1]
+        this.setData({
+          imgUrl
+        })
+      })
+
+    // 获取会员卡详情也的数据(价格等)
+    getCard(id)
+    .then((res) => {
+      console.log(res)
+      let price = res.data.datas
+      this.setData({
+        price
+      })
+    })
+
     // 获取当前要购买的会员卡的id
     this.setData({
       id: options.id

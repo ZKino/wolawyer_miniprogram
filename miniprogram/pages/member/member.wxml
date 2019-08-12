@@ -5,12 +5,12 @@
     <block
       wx:for="{{cardLists_jx}}"
       wx:for-item="cardList"
-      wx:key="{{cardList.id}}"
+      wx:key="{{cardList.card_id}}"
     >
-      <view class="card-list card-list-v" catchtap="toBuyDetail" data-id="{{cardList.id}}">
-        <image src="{{cardList.src}}"></image>
-        <text class="name">{{cardList.name}}</text>
-        <text class="price">￥{{cardList.price}}</text>
+      <view class="card-list card-list-v" catchtap="toBuyDetail" data-id="{{cardList.card_id}}">
+        <image src="{{cardList.card_image_url}}"></image>
+        <text class="name">{{cardList.card_name}}</text>
+        <text class="price">￥{{cardList.card_price}}</text>
       </view>
     </block>
   </view>
@@ -22,12 +22,12 @@
     <block
       wx:for="{{cardLists_qx}}"
       wx:for-item="cardList"
-      wx:key="{{cardList.id}}"
+      wx:key="{{cardList.card_id}}"
     >
-      <view class="card-list card-list-h">
-        <image src="{{cardList.src}}"></image>
-        <text class="name">{{cardList.name}}</text>
-        <text class="price">￥{{cardList.price}}</text>
+      <view class="card-list card-list-h" catchtap="toBuyDetail" data-id="{{cardList.card_id}}">
+        <image src="{{cardList.card_image_url}}"></image>
+        <text class="name">{{cardList.card_name}}</text>
+        <text class="price">￥{{cardList.card_price}}</text>
       </view>
     </block>
   </view>

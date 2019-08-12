@@ -2,15 +2,22 @@
 
 <!-- 律师页面 -->
 <view class="lawyer-top">
-  <view class="lawyer-top-item" hover-class="bg-color">全国</view>
+  <!-- <view class="lawyer-top-item" hover-class="bg-color">
+    <picker
+      mode="multiSelector"
+      bindchange="bindAreaPickerChange"
+      bindcolumnchange="bindAreaPickerColumnChange"
+      range="{{area}}"
+    >
+      全国
+    </picker>
+  </view> -->
   <view class="lawyer-top-item" hover-class="bg-color">
     <picker
       mode="multiSelector"
-      bindchange="bindMultiPickerChange"
-      bindcolumnchange="bindMultiPickerColumnChange"
-      value="{{multiIndex}}"
-      range="{{multiArray}}"
-      range-key="type_name"
+      bindchange="bindCategoryTypePickerChange"
+      bindcolumnchange="bindCategoryTypePickerColumnChange"
+      range="{{categoryType}}"
     >
       {{categoryTxt}}
     </picker>
