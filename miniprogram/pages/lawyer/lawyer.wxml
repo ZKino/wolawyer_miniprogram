@@ -2,16 +2,16 @@
 
 <!-- 律师页面 -->
 <view class="lawyer-top">
-  <!-- <view class="lawyer-top-item" hover-class="bg-color">
+  <view class="lawyer-top-item" hover-class="bg-color">
     <picker
       mode="multiSelector"
-      bindchange="bindAreaPickerChange"
+      bindchange="bindAreaChange"
       bindcolumnchange="bindAreaPickerColumnChange"
       range="{{area}}"
     >
-      全国
+      {{areaTxt}}
     </picker>
-  </view> -->
+  </view>
   <view class="lawyer-top-item" hover-class="bg-color">
     <picker
       mode="multiSelector"
@@ -42,5 +42,5 @@
       </view>
     </block>
   </view>
-  <view class="no-data">{{noData}}</view>
+  <view class="no-data" wx:else>{{noData}}</view>
 </view>

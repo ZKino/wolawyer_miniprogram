@@ -11,8 +11,15 @@ Page({
     lawyerLists: [], // 律师列表数据
     noData: "", // 暂无数据
 
-    area: [], // 区域数据
-    originalArea: [], // 区域数据原始数据
+    areaTxt: "全国",
+    area: [],
+    originalProvince: [],
+    originalTown: [],
+    originalCounty: [],
+    columnvalue0: '',
+    province: [],
+    town: [],
+    county: [],
 
     categoryTxt: "全部分类", // 全部分类文本
     categoryType: [], // 案件类别数据
@@ -42,10 +49,15 @@ Page({
         this.setData({
           lawyerLists
         })
+        if (this.data.lawyerLists.length === 0) {
+          this.setData({
+            noData: "--没有找到任何相关信息--"
+          })
+        }
       })
       .catch((err) => {
         this.setData({
-          noData: "--暂无数据--"
+          noData: "--网络发生错误--"
         })
       })
   },
@@ -55,7 +67,12 @@ Page({
     getSelectType()
       .then((res) => {
         let levelOneList = res.data.datas.list
-        let levelTwoList = res.data.datas.list[i].next
+        levelOneList.unshift({
+          "type_id": "0",
+          "type_name": "全部分类",
+          "next": [{"type_id": "0","type_name": "全部分类",}]
+        })
+        let levelTwoList = levelOneList[i].next
         let levelOneArr = levelOneList.map((item) => {
           return item.type_name
         })
@@ -90,6 +107,74 @@ Page({
     this.render_getLawyerLists(this.data.type_id, this.data.area_id, this.data.curpage, this.data.page)
   },
 
+  // 请求 区域 数据
+  
+  bindAreaPickerColumnChange (e) {
+    let column = e.detail.column
+    let value = e.detail.value
+    if (column === 0) {
+      if (value === 0) {
+        this.setData({
+          town: [],
+          county: []
+        })
+        this.setData({
+          area: [this.data.province, this.data.town, this.data.county]
+        })
+      } else {
+        let area_id = this.data.originalProvince[value].area_id
+        this.setData({area_id})
+        getArea(area_id).then((res) => {
+          let town = res.data.datas.area_list.map((item) => {
+            return item.area_name
+          })
+          this.setData({
+            town,
+            county: [],
+            originalTown: res.data.datas.area_list
+          })
+          this.setData({
+            area: [this.data.province, this.data.town, this.data.county]
+          })
+        })
+      }
+    }
+    if (column === 1) {
+      if (value === 0) {
+        this.setData({
+          county: []
+        })
+        this.setData({
+          area: [this.data.province, this.data.town, this.data.county]
+        })
+      } else {
+        let area_id = this.data.originalTown[value].area_id
+        this.setData({area_id})
+        getArea(area_id).then((res) => {
+          let county = res.data.datas.area_list.map((item) => {
+            return item.area_name
+          })
+          this.setData({
+            county,
+            originalCounty: res.data.datas.area_list
+          })
+          this.setData({
+            area: [this.data.province, this.data.town, this.data.county]
+          })
+        }) 
+      }
+    }
+  },
+  bindAreaChange (e) {
+    let index0 = e.detail.value[0]
+    let index1 = e.detail.value[1]
+    let index2 = e.detail.value[2]
+    let area_id = this.data.originalCounty[index2].area_id
+    let areaTxt = this.data.originalCounty[index2].area_name
+    this.setData({ area_id, areaTxt})
+    this.render_getLawyerLists(this.data.type_id, this.data.area_id, this.data.curpage, this.data.page)
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -97,6 +182,21 @@ Page({
 
     // 页面加载请求区域数据
     // this.render_getArea(this.data.area_id)
+    getArea(this.data.area_id)
+      .then((res) => {
+        let province = res.data.datas.area_list.map((item) => {
+          return item.area_name
+        })
+        this.setData({
+          province,
+          town: [],
+          county: [],
+          originalProvince: res.data.datas.area_list
+        })
+        this.setData({
+          area: [this.data.province, this.data.town, this.data.county]
+        })
+      })
 
     // 页面加载请求律师数据
     this.render_getLawyerLists(this.data.type_id, this.data.area_id, this.data.curpage, this.data.page)

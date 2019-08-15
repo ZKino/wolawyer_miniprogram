@@ -6,7 +6,9 @@ const ajax = (options) => {
     wx.request({
       url: options.url,
       data: options.data || {},
-      header: {},
+      header: {
+        'cookie': wx.getStorageSync("cookieKey")
+      },
       method: options.method || 'GET',
       dataType: options.dataType || 'json',
       success: resolve,
@@ -26,6 +28,7 @@ const GETCASELISTS = ApiUrl + "/index.php?act=vip_inactive&op=case_list"
 const GETCASETYPE = ApiUrl + "/index.php?act=vip_inactive&op=get_group&type=case"
 const GETLAWYERLISTS = ApiUrl + "/index.php?act=vip_inactive&op=search_lawer"
 const GETAREA = ApiUrl + "/index.php?act=area&op=area_list"
+// const GETAREA = ApiUrl + "/index.php?act=area&op=area_list_all"
 const GETLAWYERDETAIL = ApiUrl + "/index.php?act=vip_inactive&op=lawer_detail&key=undefined"
 const GETSLECTTYPE = ApiUrl + "/index.php?act=vip_inactive&op=type_select"
 const GETCARDlIST = ApiUrl + "/index.php?act=vip_inactive&op=card_list"
@@ -33,6 +36,7 @@ const GETCARDIMAGE = ApiUrl + "/index.php?act=vip_inactive&op=card_body"
 const GETCARD = ApiUrl + "/index.php?act=vip_inactive&op=card_price"
 const SENDSMS = ApiUrl + "/index.php?act=login&op=get_sms_captcha"
 const CHECKSMSCAPTCHA = ApiUrl + "/index.php?act=login&op=sms_login"
+const ORDERDETAIL = ApiUrl + "/index.php?act=vip_active&op=buy_step1"
 
 // 首页 典型案例 的4条案例网络请求
 const getHomeCaseLists = () => {
@@ -73,6 +77,7 @@ const getLawyerLists = (type_id, area_id, curpage, page) => {
 const getArea = (area_id) => {
   return ajax({
     url: `${GETAREA}&area_id=${area_id}&deep=1`
+    // url: GETAREA
   })
 }
 
@@ -133,7 +138,12 @@ const check_sms_captcha = (phone, messageCode) => {
   })
 }
 
-CHECKSMSCAPTCHA
+// 确认订单 页面的一些数据
+const getOrderDetail = () => {
+  return ajax({
+    url: ORDERDETAIL
+  })
+}
 
 export {
   getHomeCaseLists,
@@ -147,5 +157,26 @@ export {
   getCardList,
   getCardImage,
   getCard,
-  sendSms
+  sendSms,
+  check_sms_captcha,
+  getOrderDetail
 }
+
+
+// // 接口http://www.ruanjinqiao.com/mobile/index.php?act=area&op=area_list&area_id=0&deep=1
+// area_list: [
+//   {
+//     area_id: "1",
+//     area_name: "北京",
+//     chilren: [
+//       {
+//         area_id: 1,
+//         area_name: "全北京"
+//       },{
+//         area_id: "36",
+//         area_name: "北京市"
+//       }
+//     ]
+//   }
+// ]
+

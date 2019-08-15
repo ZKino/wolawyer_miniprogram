@@ -28,7 +28,6 @@ Page({
     // 页面加载 获取会员卡列表
     getCardList()
       .then((res) => {
-        console.log(res)
         this.setData({
           cardLists_jx: res.data.datas.geren_list,
           cardLists_qx: res.data.datas.qiye_list

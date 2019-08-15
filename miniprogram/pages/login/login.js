@@ -57,6 +57,12 @@ Page({
     sendSms(this.data.phone)
       .then((res) => {
         console.log(res)
+        if (res.header && res.header['Set-Cookie']) {
+          wx.setStorage({
+            key: 'cookieKey',
+            data: res.header["Set-Cookie"],
+          })
+        }
         if (!res.data.datas.error) {
           wx.showToast({
             title: '发送成功',
@@ -111,6 +117,13 @@ Page({
   checkSmsCaptcha (phone, messageCode) {
     check_sms_captcha(phone, messageCode)
       .then((res) => {
+        console.log(res)
+        if (res.header && res.header['Set-Cookie']) {
+          wx.setStorage({
+            key: 'cookieKey',
+            data: res.header["Set-Cookie"],
+          })
+        }
         if (!res.data.datas.error) {
           console.log(res)
           wx.showToast({

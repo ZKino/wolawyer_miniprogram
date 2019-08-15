@@ -1,4 +1,7 @@
 // pages/orderdetail/orderdetail.js
+
+import { getOrderDetail } from "../../ajax/index.js"
+
 Page({
 
   /**
@@ -12,6 +15,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    // 获取确认订单页面一些数据
+    getOrderDetail().then((res) => {
+      console.log(res)
+    })
 
   },
 
