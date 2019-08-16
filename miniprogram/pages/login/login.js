@@ -53,16 +53,8 @@ Page({
   // 点击 短信验证 按钮
   handlerGetMessageCode () {
     // ajax请求短信接口
-    console.log(this.data.phone)
     sendSms(this.data.phone)
       .then((res) => {
-        console.log(res)
-        if (res.header && res.header['Set-Cookie']) {
-          wx.setStorage({
-            key: 'cookieKey',
-            data: res.header["Set-Cookie"],
-          })
-        }
         if (!res.data.datas.error) {
           wx.showToast({
             title: '发送成功',
@@ -89,7 +81,6 @@ Page({
       })
       if (count === 0) {
         clearInterval(timer)
-        console.log(text)
         this.setData({
           isSendMessageCode: false,
           messageCodeText: text
@@ -117,21 +108,21 @@ Page({
   checkSmsCaptcha (phone, messageCode) {
     check_sms_captcha(phone, messageCode)
       .then((res) => {
-        console.log(res)
-        if (res.header && res.header['Set-Cookie']) {
-          wx.setStorage({
-            key: 'cookieKey',
-            data: res.header["Set-Cookie"],
-          })
-        }
         if (!res.data.datas.error) {
-          console.log(res)
+          // getApp().globalData.username = res.data.datas.username
+          // getApp().globalData.userid = res.data.datas.userid
+          // getApp().globalData.key = res.data.datas.key
+          wx.setStorage({ key: 'username',data: res.data.datas.username })
+          wx.setStorage({ key: 'userid', data: res.data.datas.userid })
+          wx.setStorage({ key: 'key', data: res.data.datas.key })
           wx.showToast({
             title: '登陆成功',
-            duration: 3000
-          })
-          wx.navigateTo({
-            url: '../mine/mine',
+            duration: 3000,
+            success: function() {
+              wx.switchTab({
+                url: '../home/home',
+              })
+            }
           })
         } else {
           wx.showToast({
@@ -147,7 +138,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -175,7 +166,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(this.timer)
   },
 
   /**

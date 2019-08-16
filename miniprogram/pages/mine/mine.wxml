@@ -4,8 +4,9 @@
 <view class="mine">
   <view class="mine-top">
     <image src="../../images/mine-top-bg.png" class="mine-top-bg"></image>
-    <image bindtap="toJumpLogin" src="{{userHeader}}" class="mine-top-header"></image>
-    <text class="mine-top-login">登陆/注册</text>
+    <image bindtap="{{isClick?'toJumpLogin':''}}" src="{{userHeader}}" class="mine-top-header"></image>
+    <text class="mine-top-card">{{cardInfo}}</text>
+    <text class="mine-top-login">{{mineTxt}}</text>
   </view>
 
   <view class="mine-lists">

@@ -26,12 +26,25 @@
   color: #999999;
 }
 
-.mine .mine-top .mine-top-login {
+.mine .mine-top .mine-top-card {
   position: absolute;
-  left: 73rpx;
+  left: 200rpx;
+  bottom: -40rpx;
+  font-size: 20rpx;
+  color: #ffffff;
+  padding: 2rpx 20rpx;
+  background-color: #ED5564;
+  border-radius: 16rpx;
+}
+
+.mine .mine-top .mine-top-login {
+  width: 110rpx;
+  position: absolute;
+  left: 75rpx;
   bottom: -90rpx;
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #999999;
+  text-align: center;
 }
 
 .mine .mine-lists {

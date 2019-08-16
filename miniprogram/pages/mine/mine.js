@@ -1,11 +1,18 @@
 // pages/mine/mine.js
+
+import { getMemberInfo } from "../../ajax/index.js"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userHeader: "../../images/member_w.png" // 用户头像
+    userHeader: "../../images/member_w.png", // 用户头像
+    mineTxt: "登陆/注册", // 显示用户姓名，默认情况下是 登录/注册
+    cardInfo: "非会员", //card的等级
+    key: "",
+    isClick: true
   },
 
   // 跳转到 登陆/注册 页面
@@ -33,14 +40,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
+    let key = getApp().globalData.key
+    console.log(key)
+    console.log("-------------")
+    if (key) {
+      getMemberInfo(key).then((res) => {
+        console.log(res)
+        this.setData({
+          userHeader: res.data.datas.member_info.avator,
+          mineTxt: res.data.datas.member_info.member_truename,
+          cardInfo: res.data.datas.member_info.member_type_name + "/" + res.data.datas.member_info.member_grade_name,
+          isClick: false
+        })
+      })
+    } else {
+      this.setData({
+        isClick: true
+      })
+    }
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**

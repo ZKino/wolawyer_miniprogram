@@ -6,9 +6,7 @@ const ajax = (options) => {
     wx.request({
       url: options.url,
       data: options.data || {},
-      header: {
-        'cookie': wx.getStorageSync("cookieKey")
-      },
+      header: {},
       method: options.method || 'GET',
       dataType: options.dataType || 'json',
       success: resolve,
@@ -20,7 +18,7 @@ const ajax = (options) => {
 /**
  * API
  */
-const ApiUrl = "http://www.ruanjinqiao.com/mobile"
+const ApiUrl = "https://www.ruanjinqiao.com"
 
 const GETHOMECASELISTS_URL = ApiUrl + "/index.php?act=vip_inactive&op=case_index_list"
 const GETCASEDETAIL_URL = ApiUrl + "/index.php?act=vip_inactive&op=page_tmpl&type=case"
@@ -37,6 +35,7 @@ const GETCARD = ApiUrl + "/index.php?act=vip_inactive&op=card_price"
 const SENDSMS = ApiUrl + "/index.php?act=login&op=get_sms_captcha"
 const CHECKSMSCAPTCHA = ApiUrl + "/index.php?act=login&op=sms_login"
 const ORDERDETAIL = ApiUrl + "/index.php?act=vip_active&op=buy_step1"
+const MEMBERINFO = ApiUrl + "/index.php?act=member_index"
 
 // 首页 典型案例 的4条案例网络请求
 const getHomeCaseLists = () => {
@@ -133,15 +132,22 @@ const check_sms_captcha = (phone, messageCode) => {
     url: CHECKSMSCAPTCHA,
     data: {
       phone: phone,
-      messageCode: messageCode
+      mobilecode: messageCode
     }
   })
 }
 
-// 确认订单 页面的一些数据
+// 确认订单 页面的 会员卡/价格等数据
 const getOrderDetail = () => {
   return ajax({
     url: ORDERDETAIL
+  })
+}
+
+// 我的 页面 获取用户信息的网络请求
+const getMemberInfo = (key) => {
+  return ajax({
+    url: `${MEMBERINFO}&key=${key}`
   })
 }
 
@@ -159,24 +165,6 @@ export {
   getCard,
   sendSms,
   check_sms_captcha,
-  getOrderDetail
+  getOrderDetail,
+  getMemberInfo
 }
-
-
-// // 接口http://www.ruanjinqiao.com/mobile/index.php?act=area&op=area_list&area_id=0&deep=1
-// area_list: [
-//   {
-//     area_id: "1",
-//     area_name: "北京",
-//     chilren: [
-//       {
-//         area_id: 1,
-//         area_name: "全北京"
-//       },{
-//         area_id: "36",
-//         area_name: "北京市"
-//       }
-//     ]
-//   }
-// ]
-
